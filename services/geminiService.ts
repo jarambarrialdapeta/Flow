@@ -4,18 +4,27 @@ import { Transaction, Stock, FinancialSummary } from "../types";
 // Add declaration to satisfy TS without depending on @types/node being perfectly picked up
 declare const process: {
   env: {
-    API_KEY: string;
+    API_KEY: string | undefined;
   }
 };
 
-// Fix: Use process.env.API_KEY directly as per strict guidelines
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Safe initialization - prevents immediate crash if key is missing
+const apiKey = process.env.API_KEY || "";
+if (!apiKey) {
+  console.warn("Gemini API Key is missing. AI features will not work.");
+}
+
+const ai = new GoogleGenAI({ apiKey });
 
 export const getFinancialAdvice = async (
   transactions: Transaction[],
   stocks: Stock[],
   summary: FinancialSummary
 ): Promise<string> => {
+  if (!apiKey) {
+    return "Configuración incompleta: Falta la API Key de Gemini. Por favor configúrala en las variables de entorno.";
+  }
+
   try {
     // Prepare data context for the model
     const recentTransactions = transactions.slice(0, 10);
