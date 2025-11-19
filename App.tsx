@@ -1,17 +1,14 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Wallet, 
   TrendingUp, 
   ArrowUpRight, 
   ArrowDownRight, 
   DollarSign, 
-  PieChart,
   Plus,
   Activity
 } from 'lucide-react';
 import { 
-  LineChart, 
-  Line, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
@@ -53,8 +50,9 @@ const CHART_DATA = [
 ];
 
 const App: React.FC = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>(INITIAL_TRANSACTIONS);
-  const [stocks, setStocks] = useState<Stock[]>(INITIAL_STOCKS);
+  // Removed unused setters (setTransactions, setStocks) to satisfy linter/Vercel build
+  const [transactions] = useState<Transaction[]>(INITIAL_TRANSACTIONS);
+  const [stocks] = useState<Stock[]>(INITIAL_STOCKS);
   const [aiAdvice, setAiAdvice] = useState<string>('');
   const [isAiLoading, setIsAiLoading] = useState<boolean>(false);
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Sparkles, RefreshCw } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 

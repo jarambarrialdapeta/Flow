@@ -1,6 +1,13 @@
 import { GoogleGenAI } from "@google/genai";
 import { Transaction, Stock, FinancialSummary } from "../types";
 
+// Add declaration to satisfy TS without depending on @types/node being perfectly picked up
+declare const process: {
+  env: {
+    API_KEY: string;
+  }
+};
+
 // Fix: Use process.env.API_KEY directly as per strict guidelines
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
