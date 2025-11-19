@@ -1,0 +1,5 @@
+{
+  "name": "FinanzasFlow",
+  "description": "Gestor de finanzas personales, ingresos, gastos e inversiones con estilo Material Design y análisis por IA.",
+  "requestFramePermissions": []
+}
